@@ -3704,7 +3704,9 @@ function _r(e, t, n, c, s, a) {
         case 3:
           return (u = o.sent()), (r = null), [3, 6];
         case 4:
-          return (d = o.sent()), (r = d), [3, 5];
+          return (
+            (d = o.sent()), console.log('Fetch Error: ', d), (r = d), [3, 5]
+          );
         case 5:
           return l++, [3, 1];
         case 6:
@@ -4726,7 +4728,6 @@ var yo,
                     }),
                     void 0 !== u.redirect_uri &&
                       (l.redirect_uri = u.redirect_uri),
-                    console.log('Calling authToken', l, this.worker),
                     [4, Mr(l, this.worker)]
                   );
                 case 1:
