@@ -4778,6 +4778,7 @@
                       }),
                       void 0 !== u.redirect_uri &&
                         (l.redirect_uri = u.redirect_uri),
+                      console.log('Options: ', l),
                       [4, Mr(l, this.worker)]
                     );
                   case 1:
