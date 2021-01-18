@@ -4776,6 +4776,7 @@
                       }),
                       void 0 !== u.redirect_uri &&
                         (l.redirect_uri = u.redirect_uri),
+                      console.log('Calling authToken', l, this.worker),
                       [4, Mr(l, this.worker)]
                     );
                   case 1:
