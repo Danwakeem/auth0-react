@@ -88,6 +88,14 @@ export interface Auth0ProviderOptions {
    * Read more about [changing storage options in the Auth0 docs](https://auth0.com/docs/libraries/auth0-single-page-app-sdk#change-storage-options)
    */
   cacheLocation?: CacheLocation;
+
+  /**
+   * This will replace the cache mechanism with your own custom cache.
+   *
+   * Read more about [changing storage options in the Auth0 docs](https://auth0.com/docs/libraries/auth0-single-page-app-sdk#change-storage-options)
+   */
+  customCache?: any;
+
   /**
    * If true, refresh tokens are used to fetch new access tokens from the Auth0 server. If false, the legacy technique of using a hidden iframe and the `authorization_code` grant with `prompt=none` is used.
    * The default setting is `false`.

@@ -75,6 +75,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-test-renderer": "^16.13.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.7.2",
     "rollup-plugin-analyzer": "^3.3.0",
     "rollup-plugin-delete": "^1.2.0",
@@ -99,6 +100,6 @@
     }
   },
   "dependencies": {
-    "@auth0/auth0-spa-js": "^1.13.5"
+    "@auth0/auth0-spa-js": "git://github.com/Danwakeem/auth0-spa-js.git#CustomCacheBuild"
   }
 }
