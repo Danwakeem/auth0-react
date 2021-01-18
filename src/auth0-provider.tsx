@@ -11,6 +11,7 @@ import {
   GetTokenWithPopupOptions,
   GetTokenSilentlyOptions,
   GetIdTokenClaimsOptions,
+  RedirectLoginResult,
 } from '@auth0/auth0-spa-js';
 import Auth0Context, { RedirectLoginOptions } from './auth0-context';
 import { hasAuthParams, loginError, tokenError } from './utils';
@@ -236,6 +237,12 @@ const Auth0Provider = (opts: Auth0ProviderOptions): JSX.Element => {
     })();
   }, [client, onRedirectCallback, skipRedirectCallback]);
 
+  const handleRedirectCallback = useCallback(
+    (url?: string): Promise<RedirectLoginResult> =>
+      client.handleRedirectCallback(url),
+    [client]
+  );
+
   const loginWithRedirect = useCallback(
     (opts?: Auth0RedirectLoginOptions): Promise<void> =>
       client.loginWithRedirect(toAuth0LoginRedirectOptions(opts)),
@@ -325,6 +332,7 @@ const Auth0Provider = (opts: Auth0ProviderOptions): JSX.Element => {
         loginWithRedirect,
         loginWithPopup,
         logout,
+        handleRedirectCallback,
       }}
     >
       {children}

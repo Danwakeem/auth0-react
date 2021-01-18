@@ -5297,6 +5297,7 @@
     loginWithRedirect: stub,
     loginWithPopup: stub,
     logout: stub,
+    handleRedirectCallback: stub,
   });
   /**
    * The Auth0 Context
@@ -5488,6 +5489,12 @@
       },
       [client, onRedirectCallback, skipRedirectCallback]
     );
+    var handleRedirectCallback = React.useCallback(
+      function (url) {
+        return client.handleRedirectCallback(url);
+      },
+      [client]
+    );
     var loginWithRedirect = React.useCallback(
       function (opts) {
         return client.loginWithRedirect(toAuth0LoginRedirectOptions(opts));
@@ -5621,6 +5628,7 @@
           loginWithRedirect: loginWithRedirect,
           loginWithPopup: loginWithPopup,
           logout: logout,
+          handleRedirectCallback: handleRedirectCallback,
         }),
       },
       children

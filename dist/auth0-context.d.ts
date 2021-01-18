@@ -8,6 +8,7 @@ import {
   LogoutOptions,
   PopupLoginOptions,
   PopupConfigOptions,
+  RedirectLoginResult,
 } from '@auth0/auth0-spa-js';
 import { AuthState } from './auth-state';
 export interface RedirectLoginOptions extends BaseLoginOptions {
@@ -82,6 +83,17 @@ export interface Auth0ContextInterface extends AuthState {
    * Returns all claims from the id_token if available.
    */
   getIdTokenClaims: (options?: GetIdTokenClaimsOptions) => Promise<IdToken>;
+  /**
+   * ```js
+   * await handleRedirectCallback(url);
+   * ```
+   *
+   * Allows you to call the handleRedirectCallback to set the logged in state.
+   * This is useful if need to pass in a custom window.location.search param
+   * if you are working in a non web environment where the window variable is
+   * modified.
+   */
+  handleRedirectCallback: (url?: string) => Promise<RedirectLoginResult>;
   /**
    * ```js
    * await loginWithRedirect(options);

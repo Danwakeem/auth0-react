@@ -7,6 +7,7 @@ import {
   LogoutOptions,
   PopupLoginOptions,
   PopupConfigOptions,
+  RedirectLoginResult,
 } from '@auth0/auth0-spa-js';
 import { createContext } from 'react';
 import { AuthState, initialAuthState } from './auth-state';
@@ -91,6 +92,18 @@ export interface Auth0ContextInterface extends AuthState {
 
   /**
    * ```js
+   * await handleRedirectCallback(url);
+   * ```
+   *
+   * Allows you to call the handleRedirectCallback to set the logged in state.
+   * This is useful if need to pass in a custom window.location.search param
+   * if you are working in a non web environment where the window variable is
+   * modified.
+   */
+  handleRedirectCallback: (url?: string) => Promise<RedirectLoginResult>;
+
+  /**
+   * ```js
    * await loginWithRedirect(options);
    * ```
    *
@@ -153,6 +166,7 @@ const initialContext = {
   loginWithRedirect: stub,
   loginWithPopup: stub,
   logout: stub,
+  handleRedirectCallback: stub,
 };
 
 /**
