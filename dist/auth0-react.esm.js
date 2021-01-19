@@ -3617,9 +3617,13 @@ var Kr = function (e, t) {
                 c.headers))
                   n.setRequestHeader(u, c.headers[u]);
                 n.send(c.body || null);
-              })).catch(function (e) {
-                throw (console.log('doFetch: ', e), e);
-              }),
+              }))
+                .then(function (e) {
+                  return console.log('doFetch Then:', e), e;
+                })
+                .catch(function (e) {
+                  throw (console.log('doFetch: ', e), e);
+                }),
             ];
           case 1:
             return (n = r.sent()), (i = { ok: n.ok }), [4, n.json()];
