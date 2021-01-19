@@ -3620,7 +3620,9 @@ var Kr = function (e, t) {
                 c.headers))
                   n.setRequestHeader(u, c.headers[u]);
                 n.send(c.body || null);
-              })),
+              })).catch(function (e) {
+                throw (console.log('doFetch: ', e), e);
+              }),
             ];
           case 1:
             return (n = r.sent()), (i = { ok: n.ok }), [4, n.json()];
@@ -4728,7 +4730,7 @@ var yo,
                     }),
                     void 0 !== u.redirect_uri &&
                       (l.redirect_uri = u.redirect_uri),
-                    console.log('Options: ', l),
+                    console.log('Options: ', l, this.worker),
                     [4, Mr(l, this.worker)]
                   );
                 case 1:
