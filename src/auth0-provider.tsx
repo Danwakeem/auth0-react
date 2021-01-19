@@ -11,6 +11,7 @@ import {
   GetTokenWithPopupOptions,
   GetTokenSilentlyOptions,
   GetIdTokenClaimsOptions,
+  RedirectLoginResult,
 } from '@auth0/auth0-spa-js';
 import Auth0Context, { RedirectLoginOptions } from './auth0-context';
 import { hasAuthParams, loginError, tokenError } from './utils';
@@ -88,6 +89,14 @@ export interface Auth0ProviderOptions {
    * Read more about [changing storage options in the Auth0 docs](https://auth0.com/docs/libraries/auth0-single-page-app-sdk#change-storage-options)
    */
   cacheLocation?: CacheLocation;
+
+  /**
+   * This will replace the cache mechanism with your own custom cache.
+   *
+   * Read more about [changing storage options in the Auth0 docs](https://auth0.com/docs/libraries/auth0-single-page-app-sdk#change-storage-options)
+   */
+  customCache?: any;
+
   /**
    * If true, refresh tokens are used to fetch new access tokens from the Auth0 server. If false, the legacy technique of using a hidden iframe and the `authorization_code` grant with `prompt=none` is used.
    * The default setting is `false`.
@@ -228,6 +237,12 @@ const Auth0Provider = (opts: Auth0ProviderOptions): JSX.Element => {
     })();
   }, [client, onRedirectCallback, skipRedirectCallback]);
 
+  const handleRedirectCallback = useCallback(
+    (url?: string): Promise<RedirectLoginResult> =>
+      client.handleRedirectCallback(url),
+    [client]
+  );
+
   const loginWithRedirect = useCallback(
     (opts?: Auth0RedirectLoginOptions): Promise<void> =>
       client.loginWithRedirect(toAuth0LoginRedirectOptions(opts)),
@@ -317,6 +332,7 @@ const Auth0Provider = (opts: Auth0ProviderOptions): JSX.Element => {
         loginWithRedirect,
         loginWithPopup,
         logout,
+        handleRedirectCallback,
       }}
     >
       {children}
